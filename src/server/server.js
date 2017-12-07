@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var todos = [
-  {"id": 1, "text": "Hello, world!"},
+  {"id": 1, "text": "Hello, world!", "status": "active"},
   {"id": 2, "text": "Pick up groceries", "status": "complete"}
 ];
 
@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/todos', function(req, res) {
-  res.json(JSON.stringify(todos));
+  res.json(todos);
 });
 
 app.get('/todos/:id', function(req, res) {
@@ -30,7 +30,7 @@ app.get('/todos/:id', function(req, res) {
     return todo.id === id;
   });
 
-  res.json(JSON.stringify(todos[index]));
+  res.json(todos[index]);
 });
 
 app.post('/todos', function(req, res) {
