@@ -47,18 +47,22 @@ const Navbar = ({ filterBy, onClickFilter }) => {
       >
         All
       </Link>
-      <span
-        className={activeLinkCls}
+      <Link
+        to="/active"
+        activeClassName={`${baseCls}__item--active`}
+        className={`${baseCls}__item`}
         onClick={() => onClickFilter('active')}
       >
         Active
-      </span>
-      <span
-        className={completedLinkCls}
+      </Link>
+      <Link
+        to="/completed"
+        activeClassName={`${baseCls}__item--active`}
+        className={`${baseCls}__item`}
         onClick={() => onClickFilter('completed')}
       >
         Completed
-      </span>
+      </Link>
     </div>
   );
 }
