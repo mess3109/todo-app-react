@@ -14,6 +14,7 @@ const propTypes = {
   onClickDelete: React.PropTypes.func,
   onClickTodo: React.PropTypes.func,
   status: React.PropTypes.string,
+  archive: React.PropTypes.bool,
   text: React.PropTypes.string,
 };
 
@@ -27,13 +28,14 @@ const defaultProps = {
   onClickTodo: noop,
   status: '',
   text: '',
+  archive: false
 };
 
 /**
  * Todo component
  * @returns {ReactElement}
  */
-const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
+const Todo = ({ filtered, onClickDelete, onClickArchive, onClickTodo, status, text }) => {
   /**
    * Base CSS class
    */
@@ -48,6 +50,7 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, status, text }) => {
       <TodoLink text={text} onClick={onClickTodo} />
 
       <Button text="Delete" onClick={onClickDelete} />
+      {status === 'complete' ? <Button text="Archive" onClick={onClickArchive} /> : "" }
     </li>
   );
 }
