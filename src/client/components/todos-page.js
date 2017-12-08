@@ -7,6 +7,7 @@ import Navbar from './navbar';
 import TodoForm from './todo-form';
 import TodoLink from './todo-link';
 import Todos from './todos';
+import TodosActiveBar from './todos-active-bar';
 
 /**
  * TodosPage component
@@ -39,6 +40,7 @@ class TodosPage extends React.Component {
     this.state = {
       todos: [],
       filterBy: props.params.filter,
+      activeTodos: 0
     };
 
     this.addTodo = this.addTodo.bind(this);
@@ -93,9 +95,8 @@ class TodosPage extends React.Component {
    * @param  {Array} todos - Array of todo objects
    */
   updateTodos(todos) {
-    this.setState({ todos });
+    this.setState({ todos , activeTodos: todos.filter((todo) => todo.status === "active").length });
   }
-
   /**
    * Render
    * @returns {ReactElement}
@@ -104,7 +105,7 @@ class TodosPage extends React.Component {
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
-
+        <TodosActiveBar activeTodos={this.state.activeTodos} />
         <TodoForm onSubmit={this.addTodo} />
 
         <Todos
