@@ -16,11 +16,12 @@ const defaultProps = {
   activeTodos: 0
 };
 
-const TodosActiveBar = ({ activeTodos }) => {
+const TodosActiveBar = ({ activeTodos, completeAllActive }) => {
 
   return (
-  	<div>
-  	{ activeTodos } task{ activeTodos === 1 ? "" : "s" } remaining
+  	<div className="activeTodosBar">
+  	{ activeTodos } task{ activeTodos === 1 ? "" : "s" } remaining 
+  	<span onClick={() => completeAllActive()}>Complete All</span>
   	</div>
   );
 }
