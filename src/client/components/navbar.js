@@ -63,6 +63,14 @@ const Navbar = ({ filterBy, onClickFilter }) => {
       >
         Completed
       </Link>
+      <Link
+        to="/archived"
+        activeClassName={`${baseCls}__item--active`}
+        className={`${baseCls}__item`}
+        onClick={() => onClickFilter('archived')}
+      >
+        Archived
+      </Link>
     </div>
   );
 }
