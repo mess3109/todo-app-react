@@ -103,8 +103,16 @@ class TodosPage extends React.Component {
     for (var i=0; i< currentStateCopy.length; i++) {
       currentStateCopy[i].status = "complete"
     }
-    // const todos = currentStateCopy.forEach(function(todo) { todo.status = "complete" } )
-    console.log(currentStateCopy)
+    this.updateTodos(currentStateCopy)
+  }
+
+  archiveAllComplete() {
+    const currentStateCopy = [...this.state.todos]
+    for (var i=0; i< currentStateCopy.length; i++) {
+      if (currentStateCopy[i].status === "complete") {
+        currentStateCopy[i].archive = true
+      }
+    }
     this.updateTodos(currentStateCopy)
   }
 
@@ -115,7 +123,7 @@ class TodosPage extends React.Component {
   render() {
     return (
       <div className={this.baseCls}>
-        <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
+        <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} archiveAllComplete={this.archiveAllComplete.bind(this)} />
         <TodosActiveBar activeTodos={this.state.activeTodos} completeAllActive={this.completeAllActive.bind(this)}/>
         <TodoForm onSubmit={this.addTodo} />
 
