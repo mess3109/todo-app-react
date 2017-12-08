@@ -10,8 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var todos = [
-  {"id": 1, "text": "Hello, world!", "status": "active"},
-  {"id": 2, "text": "Pick up groceries", "status": "complete"}
+{"id": 1, "text": "Hello, world!", "status": "active"},
+{"id": 2, "text": "Pick up groceries", "status": "complete"}
 ];
 
 app.get('/', function(req, res) {
@@ -48,10 +48,25 @@ app.post('/todos', function(req, res) {
 
 app.delete('/todos/:id', function(req, res) {
   res.status(500).send({"message": "not implemented"});
+  var id = req.params.id;
+  var index = todos.findIndex(function(todo) {
+    return todo.id === id;
+  });
+
+  todos.splice(index,1)
+
+  res.json(todos[index]);
 });
 
 app.put('/todos/:id', function(req, res) {
-  res.status(500).send({"message": "not implemented"});
+  // res.status(500).send({"message": "not implemented"});
+  var id = req.params.id;
+  var index = todos.findIndex(function(todo) {
+    return todo.id == id;
+  });
+  todos[index].status = req.body.data.status
+  todos[index].archive = req.body.data.archive
+  res.json(todos[index]);
 });
 
 // Node server.
