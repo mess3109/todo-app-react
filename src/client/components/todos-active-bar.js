@@ -21,7 +21,7 @@ const TodosActiveBar = ({ activeTodos, completeAllActive }) => {
   return (
   	<div className="activeTodosBar">
   	{ activeTodos } task{ activeTodos === 1 ? "" : "s" } remaining 
-  	<span onClick={() => completeAllActive()}>Complete All</span>
+  	<span className="completeAll" onClick={() => completeAllActive()}>Complete All</span>
   	</div>
   );
 }
