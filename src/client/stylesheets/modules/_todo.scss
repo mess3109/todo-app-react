@@ -1,6 +1,7 @@
 // Todo module.
 .todo {
   cursor: pointer;
+  margin-left: 20px;
 
   &--status-complete {
     text-decoration: line-through;

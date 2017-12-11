@@ -1,4 +1,16 @@
 // Header module
 .header {
-  background-color: map-get($colors, primary);
+	width: 100%;
+	background-color: map-get($colors, primary);
+	margin-top: 0px;
+	padding: 10px;
+	margin-right: 0px;
+	margin-left: 0px;
+}
+
+.header a {
+	color: white;
+	padding: 20px;
+	font-size: 20px;
+	text-decoration: none;
 }
