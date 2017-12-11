@@ -31,47 +31,49 @@ const Navbar = ({ filterBy, onClickFilter, archiveAllComplete }) => {
    */
   const baseCls = 'navbar'
 
+  let indexLinkCls = `${baseCls}__item`;
+  indexLinkCls += filterBy === '' ? ` ${baseCls}__item--active` : '';
+
   let activeLinkCls = `${baseCls}__item`;
   activeLinkCls += filterBy === 'active' ? ` ${baseCls}__item--active` : '';
 
   let completedLinkCls = `${baseCls}__item`;
   completedLinkCls += filterBy === 'completed' ? ` ${baseCls}__item--active` : '';
 
+  let archivedLinkCls = `${baseCls}__item`;
+  archivedLinkCls += filterBy === 'archived' ? ` ${baseCls}__item--active` : '';
+
   return (
     <div className={baseCls}>
       <Link
         to="/"
-        activeClassName={`${baseCls}__item--active`}
-        className={`${baseCls}__item`}
+        className={`${indexLinkCls}`}
         onClick={() => onClickFilter('')}
       >
         All
       </Link>
       <Link
         to="/active"
-        activeClassName={`${baseCls}__item--active`}
-        className={`${baseCls}__item`}
+      className={`${activeLinkCls}`}
         onClick={() => onClickFilter('active')}
       >
         Active
       </Link>
       <Link
         to="/completed"
-        activeClassName={`${baseCls}__item--active`}
-        className={`${baseCls}__item`}
+        className={`${completedLinkCls}`}
         onClick={() => onClickFilter('completed')}
       >
         Completed
       </Link>
       <Link
         to="/archived"
-        activeClassName={`${baseCls}__item--active`}
-        className={`${baseCls}__item`}
+        className={`${archivedLinkCls}`}
         onClick={() => onClickFilter('archived')}
       >
         Archived
       </Link>
-      <span onClick={() => archiveAllComplete()}>Archive All Completed</span>
+      <span className="archiveAll" onClick={() => archiveAllComplete()}>Archive all completed</span>
     </div>
   );
 }
