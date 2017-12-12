@@ -14,6 +14,8 @@ var todos = [
 {"id": 2, "text": "Pick up groceries", "status": "complete"}
 ];
 
+var todosIndex = 3
+
 app.get('/', function(req, res) {
   var bundle = `//${req.hostname}:8080/public/bundle.js`;
 
@@ -39,7 +41,7 @@ app.post('/todos', function(req, res) {
     return res.status(400).json({"message": "text is required"});
   }
 
-  var id = todos.length + 1;
+  var id = todosIndex++;
   var newTodo = { "id": id, "text": text, "status": "active" };
   todos.push(newTodo);
 
@@ -47,7 +49,7 @@ app.post('/todos', function(req, res) {
 });
 
 app.delete('/todos/:id', function(req, res) {
-  res.status(500).send({"message": "not implemented"});
+  // res.status(500).send({"message": "not implemented"});
   var id = req.params.id;
   var index = todos.findIndex(function(todo) {
     return todo.id === id;
@@ -55,7 +57,7 @@ app.delete('/todos/:id', function(req, res) {
 
   todos.splice(index,1)
 
-  res.json(todos[index]);
+  res.json(todos);
 });
 
 app.put('/todos/:id', function(req, res) {

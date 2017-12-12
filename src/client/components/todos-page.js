@@ -9,6 +9,7 @@ import TodoLink from './todo-link';
 import Todos from './todos';
 import TodosActiveBar from './todos-active-bar';
 
+
 /**
  * TodosPage component
  * @class
@@ -47,6 +48,8 @@ class TodosPage extends React.Component {
     this.postTodo = this.postTodo.bind(this);
     this.setFilterBy = this.setFilterBy.bind(this);
     this.updateTodos = this.updateTodos.bind(this);
+    this.completeAllActive = this.completeAllActive.bind(this)
+    this.archiveAllComplete = this.archiveAllComplete.bind(this)
   }
 
   /**
@@ -95,26 +98,47 @@ class TodosPage extends React.Component {
    * @param  {Array} todos - Array of todo objects
    */
   updateTodos(todos) {
-    this.setState({ todos , activeTodos: todos.filter(todo => todo.status === "active").length });
+    this.setState({ todos: todos , activeTodos: todos.filter(todo => todo.status === "active").length });
+  }
+
+  //This is a patch so that completeAllActive() and archiveAllComplete() persist to database.  There is probably a cleaner way to do this. 
+
+  putTodo = json => {
+    const index = this.state.todos.findIndex(todo => {
+      return todo.id === json.id;
+    });
+
+    this.updateTodos(
+      [
+      ...this.state.todos.slice(0, index),
+      json,
+      ...this.state.todos.slice(index + 1),
+      ]
+      );
   }
 
   completeAllActive() {
     const currentStateCopy = [...this.state.todos]
-    for (var i=0; i< currentStateCopy.length; i++) {
-      currentStateCopy[i].status = "complete"
+    for (var i = 0; i < currentStateCopy.length; i++) {
+      if (currentStateCopy[i].status === "active") {
+        let newTodo = Object.assign({}, currentStateCopy[i]);
+        newTodo.status = "complete"      
+        api('PUT', newTodo, this.putTodo);
+      }
     }
-    this.updateTodos(currentStateCopy)
   }
 
   archiveAllComplete() {
     const currentStateCopy = [...this.state.todos]
-    for (var i=0; i< currentStateCopy.length; i++) {
+    for (var i = 0; i < currentStateCopy.length; i++) {
       if (currentStateCopy[i].status === "complete") {
-        currentStateCopy[i].archive = true
+        let newTodo = Object.assign({}, currentStateCopy[i]);
+        newTodo.archive = true        
+        api('PUT', newTodo, this.putTodo);
       }
     }
-    this.updateTodos(currentStateCopy)
   }
+
 
   /**
    * Render
@@ -123,8 +147,8 @@ class TodosPage extends React.Component {
   render() {
     return (
       <div className={this.baseCls}>
-        <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} archiveAllComplete={this.archiveAllComplete.bind(this)} />
-        <TodosActiveBar activeTodos={this.state.activeTodos} completeAllActive={this.completeAllActive.bind(this)}/>
+        <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} archiveAllComplete={this.archiveAllComplete} />
+        <TodosActiveBar activeTodos={this.state.activeTodos} completeAllActive={this.completeAllActive}/>
         <TodoForm onSubmit={this.addTodo} />
         <Todos
           filterBy={this.state.filterBy}

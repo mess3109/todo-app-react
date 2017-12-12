@@ -48,7 +48,7 @@ const noop = () => {};
     updateTodos(
       [
       ...todos.slice(0, index),
-      ...todos.slice(index + 1),
+      ...todos.slice(index + 2),
       ]
       );
   }
