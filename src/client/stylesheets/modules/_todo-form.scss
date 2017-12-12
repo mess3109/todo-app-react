@@ -1,13 +1,24 @@
 // Todo Form module.
 .todoForm {
-width: 100%;
-text-align: center;
-padding: 10px;
-font-weight: 20px;
-}
-
-.todoForm form {
-	position: relative;
+	width: 100%;
+	text-align: center;
+	padding: 10px;
 	font-weight: 20px;
 }
 
+.todoForm input {
+	text-color: map-get($colors, lightgray);
+	font-size: 20px;
+	background: -webkit-linear-gradient(map-get($colors, lightgray), map-get($colors, ui-light)); 
+	border-radius: 5px;
+	border-color: map-get($colors, lightgray);
+	border-width: 1px;
+	border-style: solid;
+	width: 400px;
+	height: 40px;
+	padding-left: 20px;
+}
+
+input::-webkit-input-placeholder {
+	color: map-get($colors, gray) !important;
+}
