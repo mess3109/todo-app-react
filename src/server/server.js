@@ -52,12 +52,12 @@ app.delete('/todos/:id', function(req, res) {
   // res.status(500).send({"message": "not implemented"});
   var id = req.params.id;
   var index = todos.findIndex(function(todo) {
-    return todo.id === id;
+    return todo.id == id;
   });
 
   todos.splice(index,1)
 
-  res.json(todos);
+  res.json(todos[index]);
 });
 
 app.put('/todos/:id', function(req, res) {

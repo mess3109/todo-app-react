@@ -80,6 +80,7 @@ class TodosPage extends React.Component {
   postTodo(json) {
     this.setState({
       todos: [...json],
+      activeTodos: this.state.todos.filter(todo => todo.status === "active").length + 1
     });
   }
 
@@ -98,7 +99,7 @@ class TodosPage extends React.Component {
    * @param  {Array} todos - Array of todo objects
    */
   updateTodos(todos) {
-    this.setState({ todos: todos , activeTodos: todos.filter(todo => todo.status === "active").length });
+    this.setState({ todos: todos, activeTodos: todos.filter(todo => todo.status === "active").length });
   }
 
   //This is a patch so that completeAllActive() and archiveAllComplete() persist to database.  There is probably a cleaner way to do this. 

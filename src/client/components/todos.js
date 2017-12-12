@@ -47,8 +47,8 @@ const noop = () => {};
 
     updateTodos(
       [
-      ...todos.slice(0, index),
-      ...todos.slice(index + 2),
+      ...todos.slice(0, index - 1),
+      ...todos.slice(index),
       ]
       );
   }
@@ -60,7 +60,7 @@ const noop = () => {};
    */
    const putTodo = json => {
     const index = todos.findIndex(todo => {
-      return todo.id === json.id;
+      return todo.id == json.id;
     });
 
     updateTodos(
