@@ -41,14 +41,15 @@ const noop = () => {};
    * @param  {object} json - Resulting JSON from fetch
    */
    const deleteTodo = json => {
+    
     const index = todos.findIndex(todo => {
-      return todo.id === json.id;
+      return todo.id == json;
     });
-
+    
     updateTodos(
       [
-      ...todos.slice(0, index - 1),
-      ...todos.slice(index),
+      ...todos.slice(0, index),
+      ...todos.slice(index + 1),
       ]
       );
   }

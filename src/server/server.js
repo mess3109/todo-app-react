@@ -57,7 +57,7 @@ app.delete('/todos/:id', function(req, res) {
 
   todos.splice(index,1)
 
-  res.json(todos[index]);
+  res.json(id);
 });
 
 app.put('/todos/:id', function(req, res) {
