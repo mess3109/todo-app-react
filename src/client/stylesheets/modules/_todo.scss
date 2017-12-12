@@ -1,13 +1,66 @@
 // Todo module.
 .todo {
-  cursor: pointer;
-  margin-left: 20px;
+	cursor: pointer;
+	margin-left: 20px;
+	margin-right: 40px;
+	height: 50px;
+	width: 100%;
+	color: map-get($colors, darkgray);
+	align-items: center;
+	vertical-align: middle;
 
-  &--status-complete {
-    text-decoration: line-through;
-  }
+	&--status-complete {
+		div { text-decoration: line-through; }
+		color: map-get($colors, lightgray);
+	}
 
-  &--filtered {
-    display: none;
-  }
+	&--filtered {
+		display: none;
+	}
+}
+
+.todo hr {
+	background-color: map-get($colors, gray);
+	height: 0px;
+	width: 100%
+}
+
+.todo-link {
+	height: 100px;
+	vertical-align: middle;
+	font-size: 18px;
+	align-items: center;
+	display: inline;
+	margin-left: 50px;
+	margin-right: 20px;
+	padding: 10px;
+}
+
+.checkbox {
+	position: absolute;
+	margin-left: 0px;
+	margin-right: 10px;
+	width: 15px;
+	align-items: center;
+	height: 15px; 
+	border: 1px dotted map-get($colors, darkgray);
+	background: map-get($colors, lightgray);
+	color: map-get($colors, lightgray);
+
+	&--status-complete {
+		background: map-get($colors, green);
+		color: map-get($colors, green);
+	}
+}
+
+.deleteX {
+	position: relative;
+	margin-top: 0px;
+	margin-right: 40px;
+	float: right;
+	width: 15px;
+	align-items: center;
+	height: 15px; 
+	color: map-get($colors, lightgray);
+	font-size: 18px;
 }

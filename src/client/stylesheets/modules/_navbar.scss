@@ -2,33 +2,40 @@
 .navbar {
 	width: 100%;
 	margin-top: 0px;
-	padding: 10px;
-  padding-left: 20px;
-	background: #eeeeee;
+  margin-right: 0px;
+  padding: 5px;
+	background: map-get($colors, lightgray);
+
+
+  a {
+    margin-left: 25px;
+  }
 
   &__item {
     text-decoration: none;
-    color: #aaaaaa;
-  	padding: 5px;
+    color: map-get($colors, gray);
   	font-size: 12px;
   	font-weight: bold;
   }
 
   &__item--active {
-    font-weight: 700;
-    color: #777777;
+    color: map-get($colors, darkgray);
   }
 
-  .archiveAll {
+  .archive {
   float: right;
   background: map-get($colors, green);
   align-items: center;
   color: white;
   font-size: 10px;
   margin-right: 50px;
-  padding: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   border-radius: 5px;
   font-weight: bold;
   }

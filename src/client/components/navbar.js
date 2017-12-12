@@ -73,7 +73,7 @@ const Navbar = ({ filterBy, onClickFilter, archiveAllComplete }) => {
       >
         Archived
       </Link>
-      <span className="archiveAll" onClick={() => archiveAllComplete()}>Archive all completed</span>
+      <span className="archive" onClick={() => archiveAllComplete()}>Archive all completed</span>
     </div>
   );
 }

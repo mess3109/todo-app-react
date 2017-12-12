@@ -45,12 +45,16 @@ const Todo = ({ filtered, onClickDelete, onClickArchive, onClickTodo, status, te
     + (status === 'complete' ? ' todo--status-complete' : '')
     + (filtered ? ' todo--filtered' : '');
 
+  const checkboxCls = 'checkbox'
+    + (status === 'complete' ? ' checkbox--status-complete' : '')
+
   return (
     <li className={todoCls}>
-      <TodoLink text={text} onClick={onClickTodo} />
-
-      <Button text="Delete" onClick={onClickDelete} />
-      {status === 'complete' ? <Button text="Archive" onClick={onClickArchive} /> : "" }
+      <span className="checkbox" className={checkboxCls}>{"."}</span>
+      <TodoLink text={text} onClick={onClickTodo} checkboxCls={checkboxCls}/>
+      {status === 'complete' ? <span className="archive" onClick={onClickArchive} >archive</span> : "" }
+      <span className="deleteX" onClick={onClickDelete}>{"X"}</span>
+      <hr />
     </li>
   );
 }
